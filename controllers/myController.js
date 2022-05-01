@@ -1,6 +1,8 @@
-const db = require('../DAL/db.js')
-const getUser = (req,res,next) => {
-res.json({name:"Hamza Tahir"});
+const DataController = require('../DAL/db')
+
+async function getUser(req)  {
+    const result = await DataController.getUser(req)
+    return result;
 };
 const getScore = (req,res,next) => {
     res.json({score:100});
