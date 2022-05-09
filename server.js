@@ -5,15 +5,15 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const helmet = require('helmet');
 
+app.use(express.static(__dirname + "/AngularRoutingApp/dist/Sprint63-Sample-Project"));
 app.use(bodyParser.json());
+app.use(helmet.frameguard())
 app.options('*', cors()) // include before other routes
 
-app.get('/',(req,res) => {
-    console.log("Here");
-    res.send("Thanks for your Request");
-});
 app.get('/hands',(req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     res.sendFile(path.join(__dirname + "/Content/Hands.html"));
 });
 app.get('/Scripts/HandsScripts.js',(req,res) => {
